@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("init not Master") {
             when {
-                not { equals { expected: "master", actual: "$branch" } }
+                not { expression { return "$branch" == "master" }  }
             }
             steps {
                 sh 'echo "not Master"'
