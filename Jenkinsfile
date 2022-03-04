@@ -5,7 +5,7 @@ pipeline {
         string(
                 name: "branch",
                 defaultValue: "master",
-                description: "Бренч от куда клонить"
+                description: "Бренч откуда клонить"
         )
     }
     stages {
