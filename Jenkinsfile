@@ -8,11 +8,19 @@ pipeline {
                 description: "Бренч от куда клонить"
         )
     }
-    triggers {
-        pullSCM('H/15 * * * *')
-    }
     stages {
         stage("otus") {
+            input {
+                message "Should we continue?"
+                ok "Yep"
+                parameters {
+                    string(
+                            name: "admin name",
+                            defaultValue: "root",
+                            description: ""
+                    )
+                }
+            }
             steps {
                 sh 'echo "Otus Jenkins"'
             }
