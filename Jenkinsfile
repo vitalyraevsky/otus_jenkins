@@ -9,6 +9,14 @@ pipeline {
         )
     }
     stages {
+        stage("init not Master") {
+            when {
+                not { equals { expected: "master", actual: "$branch" } }
+            }
+            steps {
+                sh 'echo "not Master"'
+            }
+        }
         stage("otus") {
             input {
                 message "Should we continue?"
