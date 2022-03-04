@@ -8,6 +8,9 @@ pipeline {
                 description: "Бренч от куда клонить"
         )
     }
+    triggers {
+        pullSCM('H/15 * * * *')
+    }
     stages {
         stage("otus") {
             steps {
