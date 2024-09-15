@@ -51,3 +51,5 @@ instapk.log*
 
 .externalNativeBuild
 .cxx
+
+.idea
