@@ -20,12 +20,6 @@ ENV WHO "jenkins_agent"
 
 # RUN dpkg --add-architecture i386 
 # RUN dpkg --add-architecture amd64
-# lib32z1
-#RUN apt-get update -yqq && \
-#    apt-get install -y xvfb libc6 libgcc1 libncurses5 libstdc++6 zlib1g build-essential && \
-#    libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev libglu1-mesa-dev && \
-#    apt-get clean
-
 
 RUN apt-get update && \
     apt-get install --yes \
