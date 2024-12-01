@@ -18,13 +18,12 @@ RUN apt-get update && \
       "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
-    apt-get install -y docker-ce docker-ce-cli containerd.io && \
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
     usermod -aG docker jenkins && \
     groupadd -g 994 dockerroot && \
     usermod -aG dockerroot jenkins && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && \
     apt-get clean
-
 
 USER jenkins

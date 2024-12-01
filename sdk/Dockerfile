@@ -21,11 +21,18 @@ ENV WHO "jenkins_agent"
 # RUN dpkg --add-architecture i386 
 # RUN dpkg --add-architecture amd64
 # lib32z1
-RUN apt-get update -yqq && \
-    apt-get install -y xvfb libc6 libgcc1 libncurses5 libstdc++6 zlib1g build-essential && \
-    libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev libglu1-mesa-dev && \
-    apt-get clean
-    
+#RUN apt-get update -yqq && \
+#    apt-get install -y xvfb libc6 libgcc1 libncurses5 libstdc++6 zlib1g build-essential && \
+#    libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev libglu1-mesa-dev && \
+#    apt-get clean
+
+
+RUN apt-get update && \
+    apt-get install --yes \
+    xvfb lib32z1 lib32stdc++6 build-essential \
+    libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev \
+    libglu1-mesa-dev
+
 RUN apt-get -qq update && \
   apt-get install -qqy --no-install-recommends \
   ca-certificates \
@@ -64,7 +71,7 @@ RUN groupadd -g 1000 -r jenkins && \
   groupadd -g 994 -r dockerroot && \
   useradd --create-home -d "/home/jenkins" -u 1000 -r -g jenkins -G docker,dockerroot jenkins
 
-ADD --chown=jenkins http://binary/artifactory/gradle-wrapper-remote/distributions/gradle-8.6-all.zip /home/jenkins/.gradle/wrapper/dists/gradle-8.6-all/531yu94o2h2dc7gma58ju6mq5/gradle-8.6-all.zip
+ADD --chown=jenkins https://services.gradle.org/distributions/gradle-8.6-all.zip /home/jenkins/.gradle/wrapper/dists/gradle-8.6-all/531yu94o2h2dc7gma58ju6mq5/gradle-8.6-all.zip
 
 RUN mkdir -p $ANDROID_SDK_ROOT && \
     chown -R jenkins $ANDROID_SDK_ROOT

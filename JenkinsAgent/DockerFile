@@ -1,4 +1,4 @@
-FROM jenkins/agent:latest-jdk11
+FROM jenkins/agent:latest-jdk17
 
 LABEL version="1.0.1"
 
